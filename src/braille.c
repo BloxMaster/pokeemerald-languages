@@ -202,7 +202,7 @@ static void DecompressGlyph_Braille(u16 glyph)
     gCurGlyph.height = 16;
 }
 
-u32 GetGlyphWidth_Braille(u16 glyphId, bool32 isJapanese)
+u32 GetGlyphWidth_Braille(u16 glyphId, bool8 isJapanese, bool8 isAirumali)
 {
     return 16;
 }

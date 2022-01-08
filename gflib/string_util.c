@@ -361,6 +361,7 @@ u8 *StringExpandPlaceholders(u8 *dest, const u8 *src)
             case EXT_CTRL_CODE_ENG:
             case EXT_CTRL_CODE_PAUSE_MUSIC:
             case EXT_CTRL_CODE_RESUME_MUSIC:
+            case EXT_CTRL_CODE_AIRU:
                 break;
             case EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW:
                 *dest++ = *src++;
@@ -654,6 +655,34 @@ bool32 IsStringNJapanese(u8 *str, s32 n)
     return FALSE;
 }
 
+bool32 IsStringAirumali(u8 *str)
+{
+    while (*str != EOS)
+    {
+        if (*str <= JAPANESE_CHAR_END)
+            if (*str != CHAR_SPACE)
+                return TRUE;
+        str++;
+    }
+
+    return FALSE;
+}
+
+bool32 IsStringNAirumali(u8 *str, s32 n)
+{
+    s32 i;
+
+    for (i = 0; *str != EOS && i < n; i++)
+    {
+        if (*str <= JAPANESE_CHAR_END)
+            if (*str != CHAR_SPACE)
+                return TRUE;
+        str++;
+    }
+
+    return FALSE;
+}
+
 u8 GetExtCtrlCodeLength(u8 code)
 {
     static const u8 lengths[] =
@@ -683,6 +712,7 @@ u8 GetExtCtrlCodeLength(u8 code)
         [EXT_CTRL_CODE_ENG]                    = 1,
         [EXT_CTRL_CODE_PAUSE_MUSIC]            = 1,
         [EXT_CTRL_CODE_RESUME_MUSIC]           = 1,
+        [EXT_CTRL_CODE_AIRU]                   = 1,
     };
 
     u8 length = 0;

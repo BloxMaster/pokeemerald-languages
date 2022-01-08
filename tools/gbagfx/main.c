@@ -566,6 +566,8 @@ int main(int argc, char **argv)
         { "lz", NULL, HandleLZDecompressCommand },
         { NULL, "rl", HandleRLCompressCommand },
         { "rl", NULL, HandleRLDecompressCommand },
+        { "airufont", "png", HandleLatinFontToPngCommand },
+        { "png", "airufont", HandlePngToLatinFontCommand },
         { NULL, NULL, NULL }
     };
 

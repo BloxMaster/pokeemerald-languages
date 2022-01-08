@@ -93,7 +93,9 @@ struct TextPrinter
     u8 delayCounter;
     u8 scrollDistance;
     u8 minLetterSpacing;  // 0x20
-    u8 japanese;
+    u8 japanese:1;
+    u8 airumali:1;
+    u8 unimplementedlanguages:6;
 };
 
 struct FontInfo
@@ -114,7 +116,7 @@ extern const struct FontInfo *gFonts;
 struct GlyphWidthFunc
 {
     u32 fontId;
-    u32 (*func)(u16 glyphId, bool32 isJapanese);
+    u32 (*func)(u16 glyphId, bool8 isJapanese, bool8 isAirumali);
 };
 
 struct KeypadIcon
@@ -177,6 +179,6 @@ u8 GetMenuCursorDimensionByFont(u8 fontId, u8 whichDimension);
 
 // braille.c
 u16 FontFunc_Braille(struct TextPrinter *textPrinter);
-u32 GetGlyphWidth_Braille(u16 glyphId, bool32 isJapanese);
+u32 GetGlyphWidth_Braille(u16 glyphId, bool8 isJapanese, bool8 isAirumali);
 
 #endif // GUARD_TEXT_H
